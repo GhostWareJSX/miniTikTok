@@ -19,13 +19,13 @@ class ReceiverUI:
         self.menu_frame.pack(expand=True)
 
         self.title_label = tk.Label(self.menu_frame, text="TikTokLive", font=("Arial", 32, "bold"))
-        self.title_label.pack(pady=20)  # Antes: pady=40
+        self.title_label.pack(pady=20)  # Espaciado reducido
 
         self.start_button = tk.Button(self.menu_frame, text="Recibir transmisión", font=("Arial", 18), command=self.start_receiving)
-        self.start_button.pack(pady=20)
+        self.start_button.pack(pady=10)  # Espaciado reducido
 
         self.quit_button = tk.Button(self.menu_frame, text="Salir", font=("Arial", 14), command=self.root.quit)
-        self.quit_button.pack(pady=20)
+        self.quit_button.pack(pady=10)  # Espaciado reducido
 
         # Frame para la recepción de video
         self.stream_frame = tk.Frame(self.root)
@@ -39,9 +39,11 @@ class ReceiverUI:
         self.back_button.pack(pady=20)
 
     def run(self):
+        # Inicia el bucle principal de la interfaz gráfica
         self.root.mainloop()
 
     def start_receiving(self):
+        # Cambia a la vista de recepción y comienza a esperar frames
         self.menu_frame.pack_forget()
         self.stream_frame.pack(expand=True)
         self.waiting = True
@@ -52,10 +54,12 @@ class ReceiverUI:
         t.start()
 
     def back_to_menu(self):
+        # Regresa al menú principal
         self.stream_frame.pack_forget()
         self.menu_frame.pack(expand=True)
 
     def update_frame(self, frame):
+        # Actualiza la imagen mostrada en la interfaz cuando llega un frame
         if self.waiting:
             self.waiting = False
             self.waiting_label.config(text="")
@@ -72,10 +76,12 @@ class ReceiverUI:
         self.root.update_idletasks()
 
     def show_transmission_ended(self):
+        # Muestra mensaje cuando la transmisión termina y regresa al menú
         self.waiting_label.config(text="La transmisión ha terminado.", fg="red")
         self.root.after(2000, self.back_to_menu)  # Espera 2 segundos y regresa al menú
 
     def receive_loop(self):
+        # Bucle de recepción de frames (no usado directamente, ejemplo de cómo podría implementarse)
         first_frame = True
         while True:
             try:

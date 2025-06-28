@@ -15,13 +15,13 @@ class EmitterUI:
         self.menu_frame.pack(expand=True)
 
         self.title_label = tk.Label(self.menu_frame, text="TikTokLive", font=("Arial", 32, "bold"))
-        self.title_label.pack(pady=20)
+        self.title_label.pack(pady=20)  # Espaciado reducido
 
         self.start_button = tk.Button(self.menu_frame, text="Iniciar transmisión", font=("Arial", 18), command=self.start_stream)
-        self.start_button.pack(pady=20)
+        self.start_button.pack(pady=10)  # Espaciado reducido
 
         self.quit_button = tk.Button(self.menu_frame, text="Salir", font=("Arial", 14), command=self.root.quit)
-        self.quit_button.pack(pady=20)
+        self.quit_button.pack(pady=10)  # Espaciado reducido
 
         # Frame para la transmisión
         self.stream_frame = tk.Frame(self.root)
@@ -42,9 +42,11 @@ class EmitterUI:
         self.stop_button.pack(pady=20)
 
     def start(self):
+        # Inicia el bucle principal de la interfaz gráfica
         self.root.mainloop()
 
     def start_stream(self):
+        # Cambia a la vista de transmisión y comienza a enviar video
         self.menu_frame.pack_forget()
         self.stream_frame.pack(expand=True)
         self.streaming = True
@@ -53,15 +55,18 @@ class EmitterUI:
         self.emitter.start_streaming_thread()
 
     def stop_stream(self):
+        # Detiene la transmisión y regresa al menú principal
         self.streaming = False
         self.emitter.streaming = False
         self.stream_frame.pack_forget()
         self.menu_frame.pack(expand=True)
 
     def change_filter(self, value):
+        # Cambia el filtro actual aplicado al video
         self.emitter.current_filter = value
 
     def update_frame(self, frame):
+        # Actualiza la imagen mostrada en la interfaz durante la transmisión
         if not self.streaming:
             return
         if len(frame.shape) == 2:

@@ -7,12 +7,14 @@ from ui import ReceiverUI
 
 class VideoReceiver:
     def __init__(self, server_host='localhost', server_port=5002):
+        # Inicializa el receptor de video con la dirección del servidor
         self.server_host = server_host
         self.server_port = server_port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.ui = ReceiverUI(self)
 
     def connect(self):
+        # Conecta el socket al servidor
         try:
             self.socket.connect((self.server_host, self.server_port))
             self.socket.settimeout(1.0)  # Timeout de 1 segundo
@@ -22,6 +24,7 @@ class VideoReceiver:
             return False
 
     def start_receiving(self):
+        # Recibe frames del servidor y los muestra en la interfaz
         if not self.connect():
             print("No se pudo conectar al servidor.")
             return
@@ -66,5 +69,6 @@ class VideoReceiver:
             cv2.destroyAllWindows()
 
 if __name__ == "__main__":
+    # Punto de entrada principal del receptor
     receiver = VideoReceiver()
     receiver.ui.run()
