@@ -2,9 +2,18 @@ import cv2
 import numpy as np
 
 def apply_filter(frame, filter_name):
-    if filter_name == "Escala de grises":
+    if filter_name == "Ninguno":
+        return frame
+    elif filter_name == "Grises":
         return cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-    elif filter_name == "Negativo":
+    elif filter_name == "Sepia":
+        kernel = np.array([[0.272, 0.534, 0.131],
+                           [0.349, 0.686, 0.168],
+                           [0.393, 0.769, 0.189]])
+        sepia = cv2.transform(frame, kernel)
+        sepia = np.clip(sepia, 0, 255)
+        return sepia.astype(np.uint8)
+    elif filter_name == "Invertir":
         return cv2.bitwise_not(frame)
     elif filter_name == "Espejo vertical":
         return cv2.flip(frame, 1)
