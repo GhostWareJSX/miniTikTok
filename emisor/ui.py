@@ -15,7 +15,7 @@ class EmitterUI:
         self.menu_frame.pack(expand=True)
 
         self.title_label = tk.Label(self.menu_frame, text="TikTokLive", font=("Arial", 32, "bold"))
-        self.title_label.pack(pady=40)
+        self.title_label.pack(pady=20)
 
         self.start_button = tk.Button(self.menu_frame, text="Iniciar transmisión", font=("Arial", 18), command=self.start_stream)
         self.start_button.pack(pady=20)

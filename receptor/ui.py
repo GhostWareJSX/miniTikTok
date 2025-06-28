@@ -11,7 +11,7 @@ class ReceiverUI:
         self.receiver = receiver
         self.root = tk.Tk()
         self.root.title("Receptor de Video - TikTok-like")
-        self.root.geometry("200x300")
+        self.root.geometry("900x700")
         self.waiting = True
 
         # Frame del menú principal
@@ -19,7 +19,7 @@ class ReceiverUI:
         self.menu_frame.pack(expand=True)
 
         self.title_label = tk.Label(self.menu_frame, text="TikTokLive", font=("Arial", 32, "bold"))
-        self.title_label.pack(pady=40)
+        self.title_label.pack(pady=20)  # Antes: pady=40
 
         self.start_button = tk.Button(self.menu_frame, text="Recibir transmisión", font=("Arial", 18), command=self.start_receiving)
         self.start_button.pack(pady=20)
