@@ -8,7 +8,7 @@ from filters import apply_filter
 from ui import EmitterUI
 
 class VideoEmitter:
-    def __init__(self, server_host='localhost', server_port=5002):
+    def __init__(self, server_host='192.168.1.255', server_port=5002):  # Cambia aquí la IP
         # Inicializa el emisor de video con la dirección del servidor
         self.server_host = server_host
         self.server_port = server_port

@@ -6,7 +6,7 @@ import cv2
 from ui import ReceiverUI
 
 class VideoReceiver:
-    def __init__(self, server_host='localhost', server_port=5002):
+    def __init__(self, server_host='192.168.1.255', server_port=5002):
         # Inicializa el receptor de video con la dirección del servidor
         self.server_host = server_host
         self.server_port = server_port
